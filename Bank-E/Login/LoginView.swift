@@ -13,6 +13,7 @@ class LoginView: UIView {
     let stackView = UIStackView()
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
+    let deviderView = UIView()
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -29,7 +30,7 @@ class LoginView: UIView {
 extension LoginView {
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .orange
+        backgroundColor = .secondarySystemBackground
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -43,12 +44,20 @@ extension LoginView {
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
+        
+        deviderView.translatesAutoresizingMaskIntoConstraints = false
+        deviderView.backgroundColor = .secondarySystemFill
+        
+        layer.cornerRadius = 5
+        clipsToBounds = true
     }
     
     func layout() {
         
         stackView.addArrangedSubview(usernameTextField)
+        stackView.addArrangedSubview(deviderView)
         stackView.addArrangedSubview(passwordTextField)
+        
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -57,6 +66,8 @@ extension LoginView {
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
             bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1)
         ])
+        
+        deviderView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
 }
 
