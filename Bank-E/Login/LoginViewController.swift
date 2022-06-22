@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    let appLabel = UILabel()
+    let appSlogan = UILabel()
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
@@ -32,6 +34,23 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     private func style() {
+        
+        appLabel.translatesAutoresizingMaskIntoConstraints = false
+        appLabel.text = "Bank-E"
+        appLabel.textColor = .black
+        appLabel.font = .boldSystemFont(ofSize: 30)
+        
+        
+        appSlogan.translatesAutoresizingMaskIntoConstraints = false
+        appSlogan.text = """
+            Your premium sourse for all
+                        things banking!
+        """
+        appSlogan.textColor = .black
+        appSlogan.numberOfLines = 2
+        appSlogan.font = appSlogan.font.withSize(25)
+        
+        
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -49,9 +68,24 @@ extension LoginViewController {
     }
     
     private func layout() {
+        view.addSubview(appLabel)
+        view.addSubview(appSlogan)
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
+        
+        // AppLabel
+        NSLayoutConstraint.activate([
+            appSlogan.topAnchor.constraint(equalToSystemSpacingBelow: appLabel.bottomAnchor, multiplier: 3),
+            appLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // App Slogan
+        NSLayoutConstraint.activate([
+            appSlogan.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: appSlogan.bottomAnchor, multiplier: 5)
+            
+        ])
         
         // LoginView
         NSLayoutConstraint.activate([
