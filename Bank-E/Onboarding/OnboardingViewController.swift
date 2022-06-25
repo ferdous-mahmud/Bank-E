@@ -13,10 +13,24 @@ class OnboardingViewController: UIViewController {
     let imageView = UIImageView()
     let lebel = UILabel()
     
+    var heroImageName = ""
+    var titleText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         layout()
+    }
+    
+    init(heroImageName: String, titleText: String) {
+        self.heroImageName = heroImageName
+        self.titleText = titleText
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -28,13 +42,13 @@ extension OnboardingViewController {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage.init(named: "delorean")
+        imageView.image = UIImage.init(named: heroImageName)
         
         lebel.translatesAutoresizingMaskIntoConstraints = false
         lebel.textAlignment = .center
         lebel.adjustsFontSizeToFitWidth = true
         lebel.numberOfLines = 0
-        lebel.text = "Bankey is faster, easier to use and has a brand new look and feel that make you feel like you are back in 1989"
+        lebel.text = titleText
         lebel.font = UIFont.preferredFont(forTextStyle: .title3)
     }
     
